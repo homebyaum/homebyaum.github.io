@@ -790,46 +790,42 @@ textarea::placeholder {
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
-#preloader {
-  position: fixed;
-  inset: 0;
+/* ให้ preloader เป็น overlay ทั้งหน้าเหมือนเดิม */
+#preloader{
+  position: fixed; inset: 0;
+  display: grid; place-items: center;
+  background: rgba(0,0,0,.0); /* โปร่ง หรือจะใส่ dim ก็ได้ */
   z-index: 9999;
-  overflow: hidden;
-  background-color: var(--background-color);
-  transition: all 0.6s ease-out;
-  width: 100%;
-  height: 100vh;
 }
 
-#preloader:before,
-#preloader:after {
-  content: "";
-  position: absolute;
-  border: 4px solid var(--accent-color);
-  border-radius: 50%;
-  animation: animate-preloader 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+/* กล่องพื้นหลังนิ่ง (สีเขียว/มุมมน) */
+#preloader .preloader-box{
+  width: 72px; height: 72px;
+  background: #2b7e7a;     /* ปรับให้ใกล้สีไอคอนเธอ */
+  border-radius: 18px;      /* ปรับให้เป็นวงกลมหรือมุมมนตามชอบ */
+  display: grid; place-items: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
 }
 
-#preloader:after {
-  animation-delay: -0.5s;
+/* คุมขนาดโลโก้ */
+#preloader .logo{
+  width: 52px; height: 52px;
 }
 
-@keyframes animate-preloader {
-  0% {
-    width: 10px;
-    height: 10px;
-    top: calc(50% - 5px);
-    left: calc(50% - 5px);
-    opacity: 1;
-  }
+/* กลไก “เขียนเส้น -> ลบเส้น -> วน” */
+#preloader .logo path{
+  stroke-dasharray: 100;         /* เท่ากับ pathLength */
+  stroke-dashoffset: 100;        /* เริ่มจากยังไม่วาด */
+  animation: draw 1.1s ease-in-out infinite alternate;
+}
 
-  100% {
-    width: 72px;
-    height: 72px;
-    top: calc(50% - 36px);
-    left: calc(50% - 36px);
-    opacity: 0;
-  }
+@keyframes draw{
+  to{ stroke-dashoffset: 0; }    /* วาดจนเต็ม แล้ว alternate จะย้อนกลับเอง */
+}
+
+/* เคารพผู้ใช้ที่ไม่ชอบ motion */
+@media (prefers-reduced-motion: reduce){
+  #preloader .logo path{ animation: none; stroke-dashoffset: 0; }
 }
 
 /*--------------------------------------------------------------

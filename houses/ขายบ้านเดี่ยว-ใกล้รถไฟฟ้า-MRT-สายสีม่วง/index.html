@@ -613,7 +613,17 @@
 </a>
 
 <!-- Preloader -->
-<div id="preloader"></div>
+<div id="preloader">
+  <div class="preloader-box">
+    <!-- ใช้ path ที่เป็นรูปร่างโลโก้ของเธอ -->
+    <svg viewBox="0 0 100 100" class="logo">
+      <!-- พื้นที่วาดเส้นยาว “100 หน่วย” เพื่อคุมแอนิเมชันง่าย -->
+      <path d="M30 70 L30 45 L50 30 L70 45 L70 70 M30 70 L60 70"
+            fill="none" stroke="white" stroke-width="8" stroke-linecap="round"
+            stroke-linejoin="round" pathLength="100"/>
+    </svg>
+  </div>
+</div>
 
 <!-- Vendor JS Files -->
 <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
