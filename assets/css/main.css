@@ -29,6 +29,7 @@
   --heading-color: #163535; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #2c7a7b; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --accent-color2: #ff8018;
+  --accent-color3: #b20000;
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -4346,6 +4347,29 @@ section,
   border-radius: 20px;
 }
 
+.properties .property-card .property-image .property-badges .badge.sold {
+  background-color: #ae0000;
+  color: white;
+}
+
+/* ถ้ารูปนั้นมี .badge.sold อยู่ข้างใน ให้สร้างลายน้ำกลางภาพ */
+.properties .property-card .property-image:has(.badge.sold)::after {
+  content: "ขายแล้ว";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  color: rgba(255, 255, 255, 1.00); /* ขาวโปร่ง 69% ตามที่ขอ */
+  font-size: 45px;
+  font-weight: 800;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 3; /* ให้อยู่เหนือรูปและ badges อื่นๆ */
+  white-space: nowrap;
+  text-shadow: 0 2px 8px rgba(0,0,0,.25); /* เงาเบาๆ ให้อ่านออกบนพื้นสว่าง */
+}
+
 .properties .property-card .property-image .property-badges .badge.featured {
   background-color: #ff6b35;
   color: white;
@@ -4898,6 +4922,24 @@ section,
   border-radius: 12px;
 }
 
+/* ถ้ารูปนี้เป็นสินค้าที่ขายแล้ว — ใช้ class sold เพิ่มใน container */
+.property-details .property-gallery .main-image-container.sold::after {
+  content: "ขายแล้ว";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 96px;
+  font-weight: 800;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 3;
+  white-space: nowrap;
+  text-shadow:
+}
+
 .property-details .property-gallery .main-image-container .main-property-image {
   width: 100%;
   height: 500px;
@@ -5107,6 +5149,19 @@ section,
   display: inline-block;
   background: color-mix(in srgb, var(--accent-color2), transparent 85%);
   color: var(--accent-color2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+
+.property-details .property-overview .property-status3 {
+  display: inline-block;
+  background: color-mix(in srgb, var(--accent-color3), transparent 85%);
+  color: var(--accent-color3);
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 12px;
